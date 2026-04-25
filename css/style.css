@@ -1,201 +1,268 @@
-/* ================================
-   Base Styles
-   ================================ */
+/* =========================
+   1. Design Tokens & Resets
+   ========================= */
 :root {
-  --color-dark: #1a1a1a;
-  --color-light: #ffffff;
-  --color-gray: #f2f2f2;
-  --color-text: #333;
-  --max-width: 900px;
+  --color-bg: #ffffff;
+  --color-surface: #f4f4f4;
+  --color-surface-alt: #e6e6e6;
+  --color-text: #333333;
+  --color-accent: #1a1a1a;
+  --color-accent-alt: #000000;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  --max-width-content: 900px;
+  --shadow-soft: 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
   line-height: 1.6;
   color: var(--color-text);
-  background: var(--color-light);
+  background-color: var(--color-bg);
 }
 
-/* ================================
-   Layout: Header & Navigation
-   ================================ */
-header {
-  background: var(--color-dark);
-  color: var(--color-light);
-  padding: 20px;
-}
-
-header h1 {
-  margin: 0 0 10px 0;
-}
-
-/* Profile Image Styling */
-header img {
-  width: 150px;              /* default desktop size */
-  height: 150px;             /* ensures perfect circle */
-  border-radius: 50%;        /* circle shape */
-  object-fit: cover;         /* crops nicely inside circle */
-  border: 4px solid #ffffff; /* circular border ring */
-  display: block;
-  margin-bottom: 15px;       /* spacing below image */
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
+/* Remove default list and link styles */
+ul {
   margin: 0;
-  display: flex;
-  gap: 15px;
+  padding: 0;
+  list-style: none;
 }
 
-nav a {
-  color: var(--color-light);
+a {
+  color: inherit;
   text-decoration: none;
-  font-weight: bold;
 }
 
-nav a:hover {
-  text-decoration: underline;
-}
+/* =========================
+   2. Layout Shell
+   ========================= */
 
-/* ================================
-   Layout: Main Content
-   ================================ */
-main {
-  padding: 20px;
-  max-width: var(--max-width);
-  margin: auto;
-}
-
-section {
-  margin-bottom: 40px;
-}
-
-article {
-  background: var(--color-gray);
-  padding: 20px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-}
-
-/* ================================
-   Components: Forms
-   ================================ */
-form {
+.page {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 15px;
 }
 
-label {
+/* Constrain main content width and center it */
+.page-main {
+  flex: 1;
+  padding: var(--space-lg) var(--space-md);
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+}
+
+/* Generic section spacing */
+.section {
+  margin-bottom: var(--space-xl);
+}
+
+/* =========================
+   3. Header & Navigation
+   ========================= */
+
+.site-header {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  padding: var(--space-lg) var(--space-md);
+}
+
+/* Header inner layout: stack on mobile, row on larger screens */
+.site-header__inner {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Profile block (used only on index) */
+.site-header__profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.site-header__image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ffffff;
+  box-shadow: var(--shadow-soft);
+}
+
+.site-header__title {
+  margin: 0;
+}
+
+/* Navigation */
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.site-nav__link {
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-sm);
   font-weight: bold;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-input,
-textarea {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.site-nav__link:hover,
+.site-nav__link:focus-visible {
+  background-color: #ffffff;
+  color: var(--color-accent);
 }
 
-textarea {
-  min-height: 120px;
+/* =========================
+   4. Content Blocks
+   ========================= */
+
+.section__title {
+  margin: 0 0 var(--space-md) 0;
 }
 
-button {
-  padding: 12px;
-  background: var(--color-dark);
-  color: var(--color-light);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
+/* Card-like articles (skills, projects) */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
 }
 
-button:hover {
-  background: #000;
+.card {
+  background-color: var(--color-surface);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
 }
 
-/* Contact Form Layout */
-form {
-  display: grid;
-  gap: 0.5rem;
-  max-width: 400px;
+.card__title {
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
 }
 
-form button {
-  margin-top: 0.5rem;
+/* =========================
+   5. Contact Form
+   ========================= */
+
+.form {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
 }
 
-/* Form field containers */
-form div label {
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form__label {
   font-weight: 600;
 }
 
-form div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-/* Inputs and textarea full width */
-input,
-textarea {
+.form__control {
+  padding: var(--space-sm);
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #cccccc;
   width: 100%;
 }
 
-/* ================================
-   Footer
-   ================================ */
-footer {
-  background: var(--color-gray);
-  padding: 20px;
+.form__control--textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form__submit {
+  align-self: flex-start;
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.15s ease;
+}
+
+.form__submit:hover,
+.form__submit:focus-visible {
+  background-color: var(--color-accent-alt);
+}
+
+/* =========================
+   6. Footer
+   ========================= */
+
+.site-footer {
+  background-color: var(--color-surface-alt);
+  padding: var(--space-md);
   text-align: center;
+  font-size: 0.9rem;
 }
 
-/* ================================
-   Responsive Design
-   ================================ */
+/* =========================
+   7. Responsive Layout
+   Mobile-first: enhance at 600px and 900px
+   ========================= */
 
-/* Mobile-first approach */
-
-/* Small screens */
-@media (max-width: 600px) {
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
+/* ≥ 600px: improve spacing and header layout */
+@media (min-width: 600px) {
+  .site-header__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  article {
-    padding: 15px;
+  .site-header__profile {
+    flex-direction: row;
+    align-items: center;
   }
 
-  main {
-    padding: 15px;
-  }
-}
-
-/* Medium screens */
-@media (max-width: 900px) {
-  body {
-    font-size: 0.95rem;
+  .site-header__title {
+    margin-left: var(--space-md);
   }
 
-  article {
-    margin-bottom: 25px;
+  .page-main {
+    padding: var(--space-xl) var(--space-md);
   }
 }
 
-/* Large screens */
-@media (min-width: 1200px) {
-  main {
+/* ≥ 900px: wider content and multi-column cards */
+@media (min-width: 900px) {
+  .page-main {
     max-width: 1100px;
+  }
+
+  .card-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+  }
+
+  .card {
+    flex: 1 1 calc(33.333% - var(--space-lg));
+    min-width: 260px;
   }
 }
