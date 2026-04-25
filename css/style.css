@@ -35,6 +35,17 @@ header h1 {
   margin: 0 0 10px 0;
 }
 
+/* Profile Image Styling */
+header img {
+  width: 150px;              /* default desktop size */
+  height: 150px;             /* ensures perfect circle */
+  border-radius: 50%;        /* circle shape */
+  object-fit: cover;         /* crops nicely inside circle */
+  border: 4px solid #ffffff; /* circular border ring */
+  display: block;
+  margin-bottom: 15px;       /* spacing below image */
+}
+
 nav ul {
   list-style: none;
   padding: 0;
