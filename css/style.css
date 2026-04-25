@@ -1,12 +1,21 @@
-/* ================================
-   Base Styles
-   ================================ */
+/* =========================
+   1. Base Styles & Variables
+   ========================= */
 :root {
   --color-dark: #1a1a1a;
   --color-light: #ffffff;
   --color-gray: #f2f2f2;
   --color-text: #333;
   --max-width: 900px;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
 }
 
 * {
@@ -14,36 +23,35 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
   line-height: 1.6;
   color: var(--color-text);
   background: var(--color-light);
 }
 
-/* ================================
-   Layout: Header & Navigation
-   ================================ */
+/* =========================
+   2. Header & Navigation
+   ========================= */
 header {
   background: var(--color-dark);
   color: var(--color-light);
-  padding: 20px;
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+}
+
+header img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--color-light);
+  margin-bottom: var(--space-md);
 }
 
 header h1 {
-  margin: 0 0 10px 0;
-}
-
-/* Profile Image Styling */
-header img {
-  width: 150px;              /* default desktop size */
-  height: 150px;             /* ensures perfect circle */
-  border-radius: 50%;        /* circle shape */
-  object-fit: cover;         /* crops nicely inside circle */
-  border: 4px solid #ffffff; /* circular border ring */
-  display: block;
-  margin-bottom: 15px;       /* spacing below image */
+  margin: 0 0 var(--space-md) 0;
 }
 
 nav ul {
@@ -51,46 +59,52 @@ nav ul {
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 15px;
+  justify-content: center;
+  gap: var(--space-md);
 }
 
 nav a {
   color: var(--color-light);
   text-decoration: none;
   font-weight: bold;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
 }
 
 nav a:hover {
-  text-decoration: underline;
+  background: var(--color-light);
+  color: var(--color-dark);
 }
 
-/* ================================
-   Layout: Main Content
-   ================================ */
+/* =========================
+   3. Main Layout
+   ========================= */
 main {
-  padding: 20px;
   max-width: var(--max-width);
   margin: auto;
+  padding: var(--space-lg) var(--space-md);
 }
 
 section {
-  margin-bottom: 40px;
+  margin-bottom: var(--space-xl);
 }
 
 article {
   background: var(--color-gray);
-  padding: 20px;
-  border-radius: 6px;
-  margin-bottom: 20px;
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-/* ================================
-   Components: Forms
-   ================================ */
+/* =========================
+   4. Contact Form
+   ========================= */
 form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: var(--space-md);
+  max-width: 400px;
 }
 
 label {
@@ -99,10 +113,11 @@ label {
 
 input,
 textarea {
-  padding: 10px;
+  padding: var(--space-sm);
   font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
+  width: 100%;
 }
 
 textarea {
@@ -110,92 +125,51 @@ textarea {
 }
 
 button {
-  padding: 12px;
+  padding: var(--space-sm) var(--space-lg);
   background: var(--color-dark);
   color: var(--color-light);
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   font-size: 1rem;
+  font-weight: bold;
 }
 
 button:hover {
   background: #000;
 }
 
-/* Contact Form Layout */
-form {
-  display: grid;
-  gap: 0.5rem;
-  max-width: 400px;
-}
-
-form button {
-  margin-top: 0.5rem;
-}
-
-/* Form field containers */
-form div label {
-  font-weight: 600;
-}
-
-form div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-/* Inputs and textarea full width */
-input,
-textarea {
-  width: 100%;
-}
-
-/* ================================
-   Footer
-   ================================ */
+/* =========================
+   5. Footer
+   ========================= */
 footer {
   background: var(--color-gray);
-  padding: 20px;
+  padding: var(--space-lg);
   text-align: center;
 }
 
-/* ================================
-   Responsive Design
-   ================================ */
+/* =========================
+   6. Responsive Design
+   ========================= */
 
-/* Mobile-first approach */
-
-/* Small screens */
-@media (max-width: 600px) {
+/* Mobile-first — enhance at 600px */
+@media (min-width: 600px) {
   nav ul {
-    flex-direction: column;
-    gap: 10px;
+    gap: var(--space-lg);
   }
 
   article {
-    padding: 15px;
-  }
-
-  main {
-    padding: 15px;
+    padding: var(--space-xl);
   }
 }
 
-/* Medium screens */
-@media (max-width: 900px) {
-  body {
-    font-size: 0.95rem;
-  }
-
-  article {
-    margin-bottom: 25px;
-  }
-}
-
-/* Large screens */
-@media (min-width: 1200px) {
+/* Larger screens — enhance layout at 900px */
+@media (min-width: 900px) {
   main {
     max-width: 1100px;
+  }
+
+  section {
+    margin-bottom: calc(var(--space-xl) * 1.5);
   }
 }
