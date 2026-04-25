@@ -1,71 +1,201 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    color: #333;
+/* ================================
+   Base Styles
+   ================================ */
+:root {
+  --color-dark: #1a1a1a;
+  --color-light: #ffffff;
+  --color-gray: #f2f2f2;
+  --color-text: #333;
+  --max-width: 900px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-light);
+}
+
+/* ================================
+   Layout: Header & Navigation
+   ================================ */
 header {
-    background: #1a1a1a;
-    color: white;
-    padding: 20px;
+  background: var(--color-dark);
+  color: var(--color-light);
+  padding: 20px;
 }
 
 header h1 {
-    margin: 0 0 10px 0;
+  margin: 0 0 10px 0;
+}
+
+/* Profile Image Styling */
+header img {
+  width: 150px;              /* default desktop size */
+  height: 150px;             /* ensures perfect circle */
+  border-radius: 50%;        /* circle shape */
+  object-fit: cover;         /* crops nicely inside circle */
+  border: 4px solid #ffffff; /* circular border ring */
+  display: block;
+  margin-bottom: 15px;       /* spacing below image */
 }
 
 nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 15px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 15px;
 }
 
 nav a {
-    color: white;
-    text-decoration: none;
+  color: var(--color-light);
+  text-decoration: none;
+  font-weight: bold;
 }
 
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ================================
+   Layout: Main Content
+   ================================ */
 main {
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
+  padding: 20px;
+  max-width: var(--max-width);
+  margin: auto;
 }
 
 section {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
+article {
+  background: var(--color-gray);
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+/* ================================
+   Components: Forms
+   ================================ */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-input, textarea {
-    padding: 10px;
-    font-size: 1rem;
+label {
+  font-weight: bold;
+}
+
+input,
+textarea {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+textarea {
+  min-height: 120px;
 }
 
 button {
-    padding: 10px;
-    background: #1a1a1a;
-    color: white;
-    border: none;
-    cursor: pointer;
+  padding: 12px;
+  background: var(--color-dark);
+  color: var(--color-light);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
+button:hover {
+  background: #000;
+}
+
+/* Contact Form Layout */
+form {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 400px;
+}
+
+form button {
+  margin-top: 0.5rem;
+}
+
+/* Form field containers */
+form div label {
+  font-weight: 600;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Inputs and textarea full width */
+input,
+textarea {
+  width: 100%;
+}
+
+/* ================================
+   Footer
+   ================================ */
 footer {
-    background: #f2f2f2;
-    padding: 20px;
-    text-align: center;
+  background: var(--color-gray);
+  padding: 20px;
+  text-align: center;
 }
 
-/* Responsive breakpoint */
+/* ================================
+   Responsive Design
+   ================================ */
+
+/* Mobile-first approach */
+
+/* Small screens */
 @media (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-    }
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  article {
+    padding: 15px;
+  }
+
+  main {
+    padding: 15px;
+  }
+}
+
+/* Medium screens */
+@media (max-width: 900px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  article {
+    margin-bottom: 25px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+  main {
+    max-width: 1100px;
+  }
 }
